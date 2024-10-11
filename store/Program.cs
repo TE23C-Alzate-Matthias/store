@@ -1,7 +1,13 @@
 ﻿int money = 100;
+int numBuy;
+int finalCost;
+int price;
+
+bool success;
 
 string buy;
-string[] acceptable = [ "1", "2", "3"];
+string num;
+string[] acceptable = [ "1", "2", "3", "4"];
 
 while (money > 0)
 {
@@ -10,9 +16,10 @@ while (money > 0)
     // vad man kan köpa
 
     Console.WriteLine("Vad vill du köpa?");
-    Console.WriteLine("1. Bronzemedalj (10kr)");
+    Console.WriteLine("1. Bronzestaty (10kr)");
     Console.WriteLine("2. Silvermedalj (20kr)");
-    Console.WriteLine("3. Guldmedalj (30kr)");
+    Console.WriteLine("3. Guldkrona (30kr)");
+    Console.WriteLine("4. Avbryt programmet");
 
     buy = Console.ReadLine();
 
@@ -22,13 +29,13 @@ while (money > 0)
         buy = Console.ReadLine();
     }
 
-    // priset för varje grej
+    // Priset för varje grej
 
-    int price = 0;
+    price = 0;
 
     if (buy == "1")
     {
-        price = 10;
+        price = 10; // sätter priset
     }
     else if (buy == "2")
     {
@@ -38,6 +45,40 @@ while (money > 0)
     {
         price = 30;
     }
+    else if(buy == "4")
+    {
+        Environment.Exit(0); // Avslutar programmet direkt
+    }
+
+    // Antal man vill köpa
+
+    Console.WriteLine("Hur många vill du köpa?");
+    numBuy = 0;
+
+    while (numBuy == 0)
+    {
+        num = Console.ReadLine();
+        success = int.TryParse(num, out numBuy); // checkar om num bara har siffor i sig och om den ahr det sätter den i numBuy
+        if (success == false)
+        {
+            Console.WriteLine("Du får bara skriva in siffror");
+        }
+    }
+
+    finalCost = price * numBuy;
+
+    if (finalCost <= money)
+    {
+        Console.WriteLine("Det går bra att köpa\n");
+        money -= finalCost;
+    }
+    else
+    {
+        Console.WriteLine("Du har inte råd\n");
+    }
 
 }
 
+Console.WriteLine("Nu har du inga pengar kvar!");
+Console.WriteLine("Tryck på valfri knapp för att stänga programet");
+Console.ReadKey();
