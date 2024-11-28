@@ -58,7 +58,7 @@ while (money > 0)
     while (numBuy == 0)
     {
         num = Console.ReadLine();
-        success = int.TryParse(num, out numBuy); // checkar om num bara har siffor i sig och om den ahr det sätter den i numBuy
+        success = int.TryParse(num, out numBuy); // checkar om num bara har siffor i sig och om den har det sätter den i numBuy
         if (success == false)
         {
             Console.WriteLine("Du får bara skriva in siffror");
